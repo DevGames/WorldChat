@@ -6,7 +6,9 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
   }
   public function onChat(\pocketmine\event\player\PlayerChatEvent $event){
     $event->setCancelled();
-    $event->getPlayer()->level->getPlayers()->sendMessage($event->getPlayer()->getNameTag()." > ".$event->getMessage());
+    foreach($event->getPlayer()->level->getPlayers() as $l){
+    $l->sendMessage($event->getPlayer()->getNameTag()." > ".$event->getMessage());
+    }
   }
 }
 ?>
