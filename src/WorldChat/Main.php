@@ -1,18 +1,12 @@
 <?php
-
 namespace WorldChat;
-
-use pocketmine\plugin\PluginBase;
-use pocketmine\event\Listener;
-
-class Main extends PluginBase implements Listener {
-
-    public function onEnable() {
-	  $this->getServer()->getPluginManager ()->registerEvents ( $this , $this );
-    }
-    
-    public function onChat(\pocketmine\event\player\PlayerChatEvent $ev){
-            $ev->setCancelled();
-            $ev->getPlayer()->level->getPlayers()->sendMessage($ev->getMessage());
-    }
+class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Listener{
+  public function onEnable(){
+    $this->getServer()->getPluginManager ()->registerEvents ( $this , $this );
+  }
+  public function onChat(\pocketmine\event\player\PlayerChatEvent $event){
+    $event->setCancelled();
+    $event->getPlayer()->level->getPlayers()->sendMessage($event->getMessage());
+  }
 }
+?>
